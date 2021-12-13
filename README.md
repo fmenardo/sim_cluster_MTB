@@ -138,10 +138,10 @@ Rscript ../collect_res.R 1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7
 
 This will create 4 files:
 
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations (one sim per line)
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations (one tip per line)
 * `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.info`                 : some general info and stats
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset (one sim per line)
 
 ## Plot results
 
@@ -161,8 +161,4 @@ cd sim_results
 Rscript ../plot_results.R -S 9 -f Figure2 -l "" -o "Type 1,Type 2" -i 0.77_0.7_0.35_0.35_0_100-2500_10_30_1e-07_1,2,3,4,5,6,7,8,9,10_1:1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 
 ```
-
-
-
-
 
