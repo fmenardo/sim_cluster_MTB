@@ -37,7 +37,8 @@ If you want you can specify a path to a folder where the intermediate files will
 ## Usage
 
 ```
-usage: MTB_cluster_sim.py [-h] [-l lineages] [-ts time] [-br B_R] [-dr D_R] [-sr S_R] [-er E_R] [-sim_n SIM] [-cr C_R [C_R ...]] [-ps_sr [PS_SR ...]] [-ps_sy [PS_SY ...]] [-c] [-s lineages|time] [-min_mt] [-max_mt] [-t] [-rpt] [-rrt] [-SNP_t]
+usage: MTB_cluster_sim.py [-h] [-l lineages] [-ts time] [-br B_R] [-dr D_R] [-sr S_R] [-er E_R] [-sim_n SIM] [-cr C_R [C_R ...]] [-ps_sr [PS_SR ...]] [-ps_sy [PS_SY ...]] [-c] [-s lineages|time]
+        [-min_mt] [-max_mt] [-t] [-rpt] [-rrt] [-SNP_t]
 
 optional arguments:
   -h, --help            show this help message and exit
