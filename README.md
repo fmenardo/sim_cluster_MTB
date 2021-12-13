@@ -98,7 +98,7 @@ There are two possible stop conditions which are mutually exclusive: `-s lineage
 
 ## An example
 
-If we want to simulate the same conditions corresponding to sup-population type 2 in the manuscript 
+If we want to simulate the same conditions corresponding to sup-population type 2 in the manuscript (Fig. 2)
 
 ```
 conda activate MTB_sim_env
@@ -106,6 +106,21 @@ python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr
 ```
 
 ## Output
+
+
+Output files:
+.tr.newick:      the transmission tree simulated by MASTER
+.newick:         the corresponding phylogenetic tree
+.fasta_var:      the fasta file with the simulated sequences (only variable positions)
+.raxml_rescaled: the inferred phylogenetic tree (with corrected branch length)
+.cl_r:           the clustering rates at different SNP thresholds (from 0 to `SNP_t`)
+ldist.csv:       the list of terminal branch lengths in SNPs (tip_ID,SNP)
+
+
+Intermediate files (these files are deleted with `--clean`):
+
+
+
 
 
 
@@ -121,13 +136,13 @@ conda env create --file R_res.yml
 If you ran some multiple simulations with the same settings, eg:
 
 ```
-for i in {1..10}; do python ../../scripts/MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
+for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
 ```
 You can collect the results of the 10 simulations as follow:
 
 ```
 conda activate R_info
-Rscript sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
+Rscript collect_res.R sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
 
