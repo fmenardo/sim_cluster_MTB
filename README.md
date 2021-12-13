@@ -109,12 +109,12 @@ python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr
 
 
 Output files:
-.tr.newick:      the transmission tree simulated by MASTER
-.newick:         the corresponding phylogenetic tree
-.fasta_var:      the fasta file with the simulated sequences (only variable positions)
-.raxml_rescaled: the inferred phylogenetic tree (with corrected branch length)
-.cl_r:           the clustering rates at different SNP thresholds (from 0 to `SNP_t`)
-ldist.csv:       the list of terminal branch lengths in SNPs (tip_ID,SNP)
+*.tr.newick:      the transmission tree simulated by MASTER
+*.newick:         the corresponding phylogenetic tree
+*.fasta_var:      the fasta file with the simulated sequences (only variable positions)
+*.raxml_rescaled: the inferred phylogenetic tree (with corrected branch length)
+*.cl_r:           the clustering rates at different SNP thresholds (from 0 to `SNP_t`)
+*ldist.csv:       the list of terminal branch lengths in SNPs (tip_ID,SNP)
 
 
 Intermediate files (these files are deleted with `--clean`):
