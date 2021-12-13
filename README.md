@@ -90,7 +90,11 @@ optional arguments:
 
 ## Stop conditions
 
-There are two possible stop conditions
+There are two possible stop conditions which are mutually exclusive:-s lineages|time. 
+
+lineages: the simulation stops when a number of living infectious individuals is reached (specified with -l). If the lineage goes extinct before the simulation is discarded. 
+
+time: the simulation stop after a certain number of years (specified with -t). If the lineage goes extinct before the simulation is retained.
 
 ## An example
 
@@ -101,6 +105,11 @@ conda activate MTB_sim_env
 python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr 0.00000007 -s time -t 30 -min_mt 100 --clean
 ```
 
+## Output
+
+
+
+
 ## Collect and plot results
 
 There are two R scripts available for post-processing of the simulation results, they rely on different packages (look in the scripts).
@@ -109,8 +118,17 @@ A ready to go conda environment is available here:
 ```
 conda env create --file R_res.yml
 ```
+If you ran some multiple simulations with the same settings, eg:
 
+```
+for i in {1..10}; do python ../../scripts/MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
+```
+You can collect the results of the 10 simulations as follow:
 
+```
+conda activate R_info
+Rscript sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
+```
 
 
 
