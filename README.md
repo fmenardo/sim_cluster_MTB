@@ -118,11 +118,11 @@ Output files (this files are not deleted with `--clean`):
 
 The name of the output files (before extension) is composed by the values of the different parameter:
 
-`br`\_`er` _ `dr`_ `sr`_ `l`_ `min_mt`-`max_mt`_ `ts`_ `t`_ `cr`_ `er`_ `ps_sy`_ `ps_sr`_ `sim_n`
+`br`\_`er`\_`dr`\_`sr`\_`l`\_`min_mt`-`max_mt`\_`ts`\_`t`\_`cr`\_`er`\_`ps_sy`\_`ps_sr`\_`sim_n`
 
-## Collect and plot results
+## Collect results
 
-There are two R scripts available for post-processing of the simulation results, they rely on different packages (look in the scripts).
+There is R script available for post-processing of the simulation results, it relies on R.utils.
 A ready to go conda environment is available here:
 
 ```
@@ -139,6 +139,8 @@ You can collect the results of the 10 simulations as follow:
 conda activate R_info
 Rscript collect_res.R sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
+
+## Plot results
 
 
 
