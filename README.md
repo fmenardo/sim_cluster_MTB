@@ -90,11 +90,11 @@ optional arguments:
 
 ## Stop conditions
 
-There are two possible stop conditions which are mutually exclusive:-s lineages|time. 
+There are two possible stop conditions which are mutually exclusive: `-s lineages|time`. 
 
-lineages: the simulation stops when a number of living infectious individuals is reached (specified with -l). If the lineage goes extinct before the simulation is discarded. 
+`lineages`: the simulation stops when a number of living infectious individuals is reached (specified with `-l`). If the lineage goes extinct before the simulation is discarded. 
 
-time: the simulation stop after a certain number of years (specified with -t). If the lineage goes extinct before the simulation is retained.
+`time`: the simulation stop after a certain number of years (specified with `-t`). If the lineage goes extinct before the simulation is retained.
 
 ## An example
 
