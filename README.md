@@ -116,19 +116,15 @@ Output files (this files are not deleted with `--clean`):
 * .cl_r:           the clustering rates at different SNP thresholds (from 0 to `SNP_t`)
 * _ldist.csv:       the list of terminal branch lengths in SNPs (tip_ID,SNP)
 
-The name of the output files (before extension) is composed by the values of the different parameter:
+The name of the output files (before extension) is composed by the values of the different parameters:
 
 `br`\_`er`\_`dr`\_`sr`\_`l`\_`min_mt`-`max_mt`\_`ts`\_`t`\_`cr`\_`er`\_`ps_sy`\_`ps_sr`\_`sim_n`
 
 ## Collect results
 
-There is R script available for post-processing of the simulation results, it relies on R.utils.
-A ready to go conda environment is available here:
+There is a R script available for post-processing of simulation results, it relies on `R.utils`.
 
-```
-conda env create --file R_res.yml
-```
-If you ran some multiple simulations with the same settings, eg:
+If you ran multiple simulations with the same settings, eg:
 
 ```
 for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
@@ -136,11 +132,22 @@ for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85
 You can collect the results of the 10 simulations as follow:
 
 ```
-conda activate R_info
 Rscript collect_res.R sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
+This will create 4 files:
+
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.info`                 : some general info and stats
+* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset
+
 ## Plot results
+
+There is a R script available for plotting the results of different simulation settings, it uses the following packages: `argparser`, `ggplot2`, `data.table`, `ggpubr`.
+
+To reproduce Figure 2:
+
 
 
 
