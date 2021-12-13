@@ -124,6 +124,17 @@ The name of the output files (before extension) is composed by the values of the
 
 There is a R script available for post-processing of simulation results, it relies on `R.utils`.
 
+I have a conda environment for this and for the plotting script:
+
+You might need to run this:
+
+```conda config --append channels conda-forge```
+and then 
+```
+conda create --name R_info --file R_info.yml
+```
+
+
 If you ran multiple simulations with the same settings, eg:
 
 ```
@@ -132,6 +143,7 @@ for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85
 You can collect the results of the 10 simulations as follow:
 
 ```
+conda activate R_info
 cd sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/
 Rscript ../collect_res.R 1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
@@ -147,9 +159,12 @@ This will create 4 files:
 
 There is a R script available for plotting the results of different simulation settings, it uses the following packages: `argparser`, `ggplot2`, `data.table`, `ggpubr`.
 
+
+
 To reproduce Figure 1:
 
 ```
+conda activate R_info
 cd sim_results
 Rscript ../plot_results.R -S 7 -f Figure1 -l "Median infectious period (months) - R0" -o "17 - 0.9,17 - 1,17 - 1.1,8 - 0.9,8 - 1,8 - 1.1,4 - 0.9,4 - 1,4 - 1.1" -i 0.45_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.5_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.55_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.9_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.0_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.1_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.8_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.0_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.2_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
@@ -157,6 +172,7 @@ Rscript ../plot_results.R -S 7 -f Figure1 -l "Median infectious period (months) 
 To reproduce Figure 2:
 
 ```
+conda activate R_info
 cd sim_results
 Rscript ../plot_results.R -S 9 -f Figure2 -l "" -o "Type 1,Type 2" -i 0.77_0.7_0.35_0.35_0_100-2500_10_30_1e-07_1,2,3,4,5,6,7,8,9,10_1:1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 
