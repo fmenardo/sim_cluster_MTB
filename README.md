@@ -118,7 +118,7 @@ Output files (this files are not deleted with `--clean`):
 
 The name of the output files (before extension) is composed by the values of the different parameter:
 
-`br`_ `er`_ `dr`_ `sr`_ `l`_ `min_mt`-`max-mt`_ `ts`_ `t`_ `cr`_ `er`_ `ps_sy`_ `ps_sr`_ `sim_n`
+`br`\_`er` _ `dr`_ `sr`_ `l`_ `min_mt`-`max_mt`_ `ts`_ `t`_ `cr`_ `er`_ `ps_sy`_ `ps_sr`_ `sim_n`
 
 ## Collect and plot results
 
