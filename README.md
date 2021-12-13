@@ -31,6 +31,7 @@ SCRATCH_PATH= os.getcwd()
 
 ```
 You need to edit the path to your beast launching script.
+
 If you want you can specify a path to a folder where the intermediate files will be saved (handy when working on a cluster with a scratch partition). If you do so uncomment and edit the first line starting with SCRATCH_PATH, and comment the line after.
 
 ## Usage
