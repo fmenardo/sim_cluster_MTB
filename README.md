@@ -130,9 +130,7 @@ You might need to run this:
 
 ```conda config --append channels conda-forge```
 and then 
-```
-conda create --name R_info --file R_info.yml
-```
+```conda create --name R_info --file R_info.yml```
 
 
 If you ran multiple simulations with the same settings, eg:
