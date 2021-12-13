@@ -107,11 +107,6 @@ python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr
 
 ## Output
 
-If you do not use a scratch folder all output are within one folder with name composed of the values of different parameters:
-
-sim_
-
-
 Output files (this files are not deleted with `--clean`):
 
 * .tr.newick:      the transmission tree simulated by MASTER
@@ -121,10 +116,9 @@ Output files (this files are not deleted with `--clean`):
 * .cl_r:           the clustering rates at different SNP thresholds (from 0 to `SNP_t`)
 * _ldist.csv:       the list of terminal branch lengths in SNPs (tip_ID,SNP)
 
+The name of the output files (before extension) is composed by the values of the different parameter:
 
-
-
-
+`br`_`er`_`dr`_`sr`_`l`_`min_mt`-`max-mt`_`ts`_`t`_`cr`_`er`_`ps_sy`_`ps_sr`_`sim_n`
 
 ## Collect and plot results
 
