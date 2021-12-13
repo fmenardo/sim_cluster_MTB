@@ -1,4 +1,6 @@
-# Pipeline to simulate the evoluton of genome sequences of MTB under different conditions
+# Pipeline to simulate the evolution of genome sequences of MTB under different conditions
+
+The pipeline is explained in the preprint "XXXXXXX". 
 
 The pipeline was tested on Ubuntu and CentOS.
 
@@ -85,6 +87,29 @@ optional arguments:
   -SNP_t , --SNP_threshold 
                         clustering will be performed for all values in the interval 0-SNP_t (Default = 50)
 ```
+
+## Stop conditions
+
+There are two possible stop conditions
+
+## An example
+
+If we want to simulate the same conditions corresponding to sup-population type 2 in the manuscript 
+
+```
+conda activate MTB_sim_env
+python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr 0.00000007 -s time -t 30 -min_mt 100 --clean
+```
+
+## Collect and plot results
+
+There are two R scripts available for post-processing of the simulation results, they rely on different packages (look in the scripts).
+A ready to go conda environment is available here:
+
+```
+conda env create --file R_res.yml
+```
+
 
 
 
