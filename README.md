@@ -65,11 +65,12 @@ optional arguments:
   -ps_sy [PS_SY ...], --post_sim_sampling_years [PS_SY ...]
                         sample only in these years (post simulation), multiple scheme possible at once: 
                         eg. <-ps_sy 1,2,3 1,3,5> default (all)
-  -c, --clean           delete all intermediate file, keep only clustering results and terminal branch lengths (default: False)
+  -c, --clean           delete all intermediate file, keep only clustering results and terminal branch lengths 
+                        (default: False)
   -s lineages|time, --stop lineages|time
                         stop criterion, the MASTER simulation should stop when reaching a certain number 
-                        of infectious existing lineages("lineages"; specified with -l) or after a certain time ("time",
-                        specified with -t)(default = "lineages")
+                        of infectious existing lineages("lineages"; specified with -l) or after a certain time 
+                        ("time" specified with -t)(default = "lineages")
   -min_mt , --min_master_tips 
                         minimum number of tips in the tree output of MASTER to accept the simulation
   -max_mt , --max_master_tips 
