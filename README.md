@@ -112,7 +112,7 @@ If you do not use a scratch folder all output are within one folder with name co
 sim_
 
 
-Output files:
+Output files (this files are not deleted with `--clean`):
 
 * .tr.newick:      the transmission tree simulated by MASTER
 * .newick:         the corresponding phylogenetic tree
@@ -120,10 +120,6 @@ Output files:
 * .raxml_rescaled: the inferred phylogenetic tree (with corrected branch length)
 * .cl_r:           the clustering rates at different SNP thresholds (from 0 to `SNP_t`)
 * _ldist.csv:       the list of terminal branch lengths in SNPs (tip_ID,SNP)
-
-
-Intermediate files (these files are deleted with `--clean`):
-
 
 
 
