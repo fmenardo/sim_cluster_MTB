@@ -60,18 +60,22 @@ optional arguments:
   -cr C_R [C_R ...], --clock_rate C_R [C_R ...]
                         clock rate (nucleotide substitution per site per year), multiple values possible
   -ps_sr [PS_SR ...], --post_sim_sampling_rates [PS_SR ...]
-                        probability of each strain to be sampled (post simulation), multiple rates possible at once: eg. <-ps_sr 1 0.5 0.1
+                        probability of each strain to be sampled (post simulation), 
+                        multiple rates possible at once: eg. <-ps_sr 1 0.5 0.1
   -ps_sy [PS_SY ...], --post_sim_sampling_years [PS_SY ...]
-                        sample only in these years (post simulation), multiple scheme possible at once: eg. <-ps_sy 1,2,3 1,3,5> default (all)
+                        sample only in these years (post simulation), multiple scheme possible at once: 
+                        eg. <-ps_sy 1,2,3 1,3,5> default (all)
   -c, --clean           delete all intermediate file, keep only clustering results and terminal branch lengths (default: False)
   -s lineages|time, --stop lineages|time
-                        stop criterion, the MASTER simulation should stop when reaching a certain number of infectious existing lineages("lineages"; specified with -l) or after a certain time ("time",
+                        stop criterion, the MASTER simulation should stop when reaching a certain number 
+                        of infectious existing lineages("lineages"; specified with -l) or after a certain time ("time",
                         specified with -t)(default = "lineages")
   -min_mt , --min_master_tips 
                         minimum number of tips in the tree output of MASTER to accept the simulation
   -max_mt , --max_master_tips 
                         max number of tips in the tree output of MASTER to accept the simulation
-  -t , --time           Simulation time for MASTER, to be used with "time" as stop criterion. The simulation will stop after the amount of years specified with this option. If the lineage goes extinct
+  -t , --time           Simulation time for MASTER, to be used with "time" as stop criterion. 
+          The simulation will stop after the amount of years specified with this option. If the lineage goes extinct
                         before the simulation is retained (Default = 10)
   -rpt , --raxml_pars_tree 
                         number of starting parsimony trees for raxml
