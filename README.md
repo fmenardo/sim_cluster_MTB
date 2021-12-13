@@ -107,6 +107,10 @@ python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr
 
 ## Output
 
+If you do not use a scratch folder all output are within one folder with name composed of the values of different parameters:
+
+sim_
+
 
 Output files:
 
