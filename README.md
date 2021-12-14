@@ -54,7 +54,7 @@ optional arguments:
   -h, --help            show this help message and exit
   -l lineages, --lineages lineages
                         number of infectious individuals, when the simulation exceed this number it stops
-  -ts time, --time_sampling time
+  -ts , --time_sampling
                         number of years of sampling (starting from present and going backward
   -br B_R, --birth_rate B_R
                         transmission rate
@@ -164,7 +164,7 @@ This will generate 4 files:
 
 There is a R script available for plotting the results of different simulation settings, it uses the following packages: `argparser`, `ggplot2`, `data.table`, `ggpubr`.
 
-here the usage:
+here the help page:
 
 ```
 usage: plot_results.R [--] [--help] [--opts OPTS] [-S -S [-f -F [-l -L
