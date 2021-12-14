@@ -260,22 +260,22 @@ def clustering(t,stem_cr,SNP_t):
                 file.close()
                 #print (perc[x])
 
-                file = open(stem_cr + ".cl" + str(x) ,"r")
-                Lines = file.readlines()
+#                file = open(stem_cr + ".cl" + str(x) ,"r")
+#                Lines = file.readlines()
 
-                for line in Lines:
+#                for line in Lines:
 
-                    cluster = re.match('^\d+\s(\d+)', line)
+#                    cluster = re.match('^\d+\s(\d+)', line)
 
-                    if (cluster):
-                        clus.append(cluster.group(1))
-                clus = list(dict.fromkeys(clus))
+#                    if (cluster):
+#                        clus.append(cluster.group(1))
+#                clus = list(dict.fromkeys(clus))
 
-                n_clus=round(int(len(clus))/int(len(leaves)),4)
+#                n_clus=round(int(len(clus))/int(len(leaves)),4)
 
-                normalized_cluster_n.append(str(n_clus))
+#                normalized_cluster_n.append(str(n_clus))
                 #print (str(n_clus))
-                file.close()
+#                file.close()
         perc.append("\n")
         F=open(stem_cr + ".cl_r","w")
         F.write("	".join(perc))
@@ -483,16 +483,16 @@ def run_raxml(stem_cr):
 parser = argparse.ArgumentParser()
 
 #parser.add_argument('INFILE',type=str,help='path to the newick tree')
-parser.add_argument('-l','--lineages', metavar='lineages', default='10', help='number of infectious individuals, when the simulation exceed this number it stops' , type =int)
-parser.add_argument('-ts','--time_sampling', metavar='time', default='', help='number of years of sampling (starting from present and going backward' , type =int, nargs=1)
-parser.add_argument('-br','--birth_rate', metavar='B_R', default='', help='transmission rate' , type =float, nargs=1)
-parser.add_argument('-dr','--death_rate', metavar='D_R', default='', help='death rate' , type =float, nargs=1)
-parser.add_argument('-sr','--sampling_rate', metavar='S_R', default='', help='sampling rate' , type =float, nargs=1)
-parser.add_argument('-er','--exposed_rate', metavar='E_R', default='', help='rate at which exposed become infectious' , type =float, nargs=1)
-parser.add_argument('-sim_n','--simulation_number', metavar='SIM', default='', help='simulation number ID' , type =int, nargs=1)
-parser.add_argument('-cr','--clock_rate', metavar='C_R', default='', help='clock rate  (nucleotide substitution per site per year), multiple values possible' , type =float, nargs='+')
-parser.add_argument('-ps_sr','--post_sim_sampling_rates', metavar='PS_SR', default='', help='probability of each strain to be sampled (post simulation), multiple rates possible at once: eg. <-ps_sr 1 0.5 0.1', type = str, nargs='*')
-parser.add_argument('-ps_sy','--post_sim_sampling_years', metavar='PS_SY', default='', help='sample only in these years (post simulation), multiple scheme possible at once: eg. <-ps_sy 1,2,3 1,3,5>  default (all) ', type = str, nargs='*',)
+parser.add_argument('-l','--lineages', metavar='', default='10', help='number of infectious individuals, when the simulation exceed this number it stops' , type =int)
+parser.add_argument('-ts','--time_sampling', metavar='', default='', help='number of years of sampling (starting from present and going backward' , type =int, nargs=1)
+parser.add_argument('-br','--birth_rate', metavar='', default='', help='transmission rate' , type =float, nargs=1)
+parser.add_argument('-dr','--death_rate', metavar='', default='', help='death rate' , type =float, nargs=1)
+parser.add_argument('-sr','--sampling_rate', metavar='', default='', help='sampling rate' , type =float, nargs=1)
+parser.add_argument('-er','--exposed_rate', metavar='', default='', help='rate at which exposed become infectious' , type =float, nargs=1)
+parser.add_argument('-sim_n','--simulation_number', metavar='', default='', help='simulation number ID' , type =int, nargs=1)
+parser.add_argument('-cr','--clock_rate', metavar='', default='', help='clock rate  (nucleotide substitution per site per year), multiple values possible' , type =float, nargs='+')
+parser.add_argument('-ps_sr','--post_sim_sampling_rates', metavar='', default='', help='probability of each strain to be sampled (post simulation), multiple rates possible at once: eg. <-ps_sr 1 0.5 0.1', type = str, nargs='*')
+parser.add_argument('-ps_sy','--post_sim_sampling_years', metavar='', default='', help='sample only in these years (post simulation), multiple scheme possible at once: eg. <-ps_sy 1,2,3 1,3,5>  default (all) ', type = str, nargs='*',)
 parser.add_argument('-c','--clean', default=False, help='delete all intermediate file, keep only clustering results and terminal branch lengths (default: False)',action='store_true')
 parser.add_argument('-s','--stop', default=False,metavar="lineages|time", help='stop criterion, the MASTER simulation should stop when reaching a certain number of infectious existing lineages("lineages"; specified with -l) or after a certain time ("time", specified with -t)(default = "lineages")',type=str,choices=["lineages","time"])
 parser.add_argument('-min_mt','--min_master_tips', metavar='', default='4', help='minimum number of tips in the tree output of MASTER to accept the simulation' , type =int)
