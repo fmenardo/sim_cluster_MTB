@@ -1,6 +1,6 @@
 # Pipeline to simulate the evolution of genome sequences of MTB under different conditions
 
-This repository contained supplementary data code used for the preprint **Clustering and terminal branch lengths analyses can not reliably detect variation in transmission among sub-populations of Mycobacterium tuberculosis**. 
+This repository containes supplementary data and code used for the preprint **"Clustering and terminal branch lengths analyses can not reliably detect variation in transmission among sub-populations of *Mycobacterium tuberculosis*"**. 
 
 
 * sim_results:        a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
@@ -8,7 +8,7 @@ This repository contained supplementary data code used for the preprint **Cluste
 * collect_res.R:      R script to join outputs (after running several simulations with the same settings)
 * plot_results.R:     R script to compare different settings, produces plots and summary table 
 * MTB_sim.yml:        yml file to create the conda environment to run the pipeline
-* R_info.yml:  yml file yml file to create the conda environment to run the R scripts
+* R_info.yml:         yml file yml file to create the conda environment to run the R scripts
 
 
 ## Installation with conda
@@ -114,7 +114,7 @@ python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr
 
 ## Output
 
-Output files (this files are not deleted with `--clean`):
+Output files (these files are not deleted with `--clean`):
 
 * .tr.newick:      the transmission tree simulated by MASTER
 * .newick:         the corresponding phylogenetic tree
@@ -140,7 +140,7 @@ and then
 ```conda create --name R_info --file R_info.yml```
 
 
-If you ran multiple simulations with the same settings, eg (will take a few minutes, decrease number of simulations or `min_mt` for testing ):
+If you ran multiple simulations with the same settings eg.(will take a few minutes, decrease number of simulations or `min_mt` for testing ):
 
 ```
 for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
@@ -153,7 +153,7 @@ cd sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/
 Rscript ../collect_res.R 1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
-This will create 4 files:
+This will generate 4 files:
 
 * `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations (one sim per line)
 * `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations (one tip per line)
