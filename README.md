@@ -1,8 +1,15 @@
 # Pipeline to simulate the evolution of genome sequences of MTB under different conditions
 
-The pipeline is explained in the preprint "XXXXXXX". 
+This repository contained supplementary data code used for the preprint **Clustering and terminal branch lengths analyses can not reliably detect variation in transmission among sub-populations of Mycobacterium tuberculosis**. 
 
-The pipeline was tested on Ubuntu and CentOS.
+
+* sim_results:        a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
+* MTB_cluster_sim.py: the python wrapper fro the pipeline. The pipeline was tested on Ubuntu and CentOS.
+* collect_res.R:      R script to join outputs (after running several simulations with the same settings)
+* plot_results.R:     R script to compare different settings, produces plots and summary table 
+* MTB_sim.yml:        yml file to create the conda environment to run the pipeline
+* R_info.yml:  yml file yml file to create the conda environment to run the R scripts
+
 
 ## Installation with conda
 
@@ -133,7 +140,7 @@ and then
 ```conda create --name R_info --file R_info.yml```
 
 
-If you ran multiple simulations with the same settings, eg:
+If you ran multiple simulations with the same settings, eg (will take a few minutes, decrease number of simulations or `min_mt` for testing ):
 
 ```
 for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
@@ -157,9 +164,37 @@ This will create 4 files:
 
 There is a R script available for plotting the results of different simulation settings, it uses the following packages: `argparser`, `ggplot2`, `data.table`, `ggpubr`.
 
+here the usage:
+
+```
+usage: plot_results.R [--] [--help] [--opts OPTS] [-S -S [-f -F [-l -L
+       [-o -O [-i -I
+
+compare different simulation settings, generate plots and a summary res
+table
+
+flags:
+  -h, --help  show this help message and exit
+
+optional arguments:
+  -x, --opts  RDS file containing argument values
+  -S, -S      plot clustering rates for all SNP threshold =< to this
+              value [default: 5]
+  -f, -f      stem for output files
+  -l, -l      x labels for plots. If spaces in label use quotes(eg. -l
+              "x label")
+  -o, -o      comma delimited list of labels for each file in the
+              desired order, eg. -o 1,2,3,4. If there are spaces within
+              label use quotes
+  -i, -i      colon delimited list of stem name for each simulation
+              (including path) same order as in -o. Use quotes if
+              spaces in path
+
+```
 
 
-To reproduce Figure 1:
+
+To reproduce Figure 1 (will take a few minutes):
 
 ```
 conda activate R_info
