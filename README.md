@@ -121,6 +121,7 @@ If we want to simulate the same conditions corresponding to sup-population type 
 ```
 conda activate MTB_sim_env
 python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr 0.00000007 -s time -t 30 -min_mt 100 --clean
+conda deactivate
 ```
 
 ## Output
