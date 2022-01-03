@@ -1,6 +1,6 @@
 # Pipeline to simulate the evolution of genome sequences of MTB under different conditions
 
-This repository containes supplementary data and code used for the preprint **"Clustering and terminal branch lengths analyses can not reliably detect variation in transmission among sub-populations of *Mycobacterium tuberculosis*"**. 
+This repository containes supplementary data and code used for the preprint **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"**. 
 
 
 * sim_results:        a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
