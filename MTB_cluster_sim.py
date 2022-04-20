@@ -10,9 +10,10 @@ import random
 import shutil
 
 
-BEAST_PATH ="~/software/beast/bin/beast"
-#SCRATCH_PATH= "/path/to/scratch"
-SCRATCH_PATH= os.getcwd()
+#BEAST_PATH ="~/software/beast/bin/beast"
+BEAST_PATH ="~/data/beast/bin/beast"
+SCRATCH_PATH= "/home/cluster/fmenar/scratch"
+#SCRATCH_PATH= os.getcwd()
 
 
 def generate_xml(lin,br,er,dr,sr,stem,sim_time,end_condition,min_mt,max_mt):
@@ -260,22 +261,22 @@ def clustering(t,stem_cr,SNP_t):
                 file.close()
                 #print (perc[x])
 
-#                file = open(stem_cr + ".cl" + str(x) ,"r")
-#                Lines = file.readlines()
+                file = open(stem_cr + ".cl" + str(x) ,"r")
+                Lines = file.readlines()
 
-#                for line in Lines:
+                for line in Lines:
 
-#                    cluster = re.match('^\d+\s(\d+)', line)
+                    cluster = re.match('^\d+\s(\d+)', line)
 
-#                    if (cluster):
-#                        clus.append(cluster.group(1))
-#                clus = list(dict.fromkeys(clus))
+                    if (cluster):
+                        clus.append(cluster.group(1))
+                clus = list(dict.fromkeys(clus))
 
-#                n_clus=round(int(len(clus))/int(len(leaves)),4)
+                n_clus=round(int(len(clus))/int(len(leaves)),4)
 
-#                normalized_cluster_n.append(str(n_clus))
+                normalized_cluster_n.append(str(n_clus))
                 #print (str(n_clus))
-#                file.close()
+                file.close()
         perc.append("\n")
         F=open(stem_cr + ".cl_r","w")
         F.write("	".join(perc))
@@ -483,24 +484,25 @@ def run_raxml(stem_cr):
 parser = argparse.ArgumentParser()
 
 #parser.add_argument('INFILE',type=str,help='path to the newick tree')
-parser.add_argument('-l','--lineages', metavar='', default='10', help='number of infectious individuals, when the simulation exceed this number it stops' , type =int)
-parser.add_argument('-ts','--time_sampling', metavar='', default='', help='number of years of sampling (starting from present and going backward' , type =int, nargs=1)
-parser.add_argument('-br','--birth_rate', metavar='', default='', help='transmission rate' , type =float, nargs=1)
-parser.add_argument('-dr','--death_rate', metavar='', default='', help='death rate' , type =float, nargs=1)
-parser.add_argument('-sr','--sampling_rate', metavar='', default='', help='sampling rate' , type =float, nargs=1)
-parser.add_argument('-er','--exposed_rate', metavar='', default='', help='rate at which exposed become infectious' , type =float, nargs=1)
-parser.add_argument('-sim_n','--simulation_number', metavar='', default='', help='simulation number ID' , type =int, nargs=1)
-parser.add_argument('-cr','--clock_rate', metavar='', default='', help='clock rate  (nucleotide substitution per site per year), multiple values possible' , type =float, nargs='+')
-parser.add_argument('-ps_sr','--post_sim_sampling_rates', metavar='', default='', help='probability of each strain to be sampled (post simulation), multiple rates possible at once: eg. <-ps_sr 1 0.5 0.1', type = str, nargs='*')
-parser.add_argument('-ps_sy','--post_sim_sampling_years', metavar='', default='', help='sample only in these years (post simulation), multiple scheme possible at once: eg. <-ps_sy 1,2,3 1,3,5>  default (all) ', type = str, nargs='*',)
+parser.add_argument('-l','--lineages', metavar='lineages', default='10', help='minimum number of living lineages (I population), when the simulation exceed this number it stops' , type =int)
+parser.add_argument('-ts','--time_sampling', metavar='time', default='', help='number of years of sampling (starting from present and going backward. default=(10)' , type =int, nargs=1)
+parser.add_argument('-br','--birth_rate', metavar='B_R', default='', help='birth rate' , type =float, nargs=1)
+parser.add_argument('-dr','--death_rate', metavar='D_R', default='', help='death rate (excluding sampling)' , type =float, nargs=1)
+parser.add_argument('-sr','--sampling_rate', metavar='S_R', default='', help='sampling rate (excluding death, if death rate = 0, this is the death rate, otherwise the death rate is S_R + D_R' , type =float, nargs=1)
+parser.add_argument('-er','--exposed_rate', metavar='E_R', default='', help='rate at which exposed become infectious' , type =float, nargs=1)
+parser.add_argument('-sim_n','--simulation_number', metavar='SIM', default='', help='simulation number ID' , type =int, nargs=1)
+parser.add_argument('-cr','--clock_rate', metavar='C_R', default='', help='clock rate  (nucleotide substitution per site per year), multiple values possible' , type =float, nargs='+')
+parser.add_argument('-ps_sr','--post_sim_sampling_rates', metavar='PS_SR', default='', help='probability of each strain to be sampled (post simulation), multiple rates possible at once: eg. <-ps_sr 1 0.5 0.1', type = str, nargs='*')
+parser.add_argument('-ps_sy','--post_sim_sampling_years', metavar='PS_SY', default='', help='sample only in these years (post sim), multiple scheme possible at once: eg. <-ps_sy 1,2,3 1,3,5>  default (all) ', type = str, nargs='*',)
 parser.add_argument('-c','--clean', default=False, help='delete all intermediate file, keep only clustering results and terminal branch lengths (default: False)',action='store_true')
-parser.add_argument('-s','--stop', default=False,metavar="lineages|time", help='stop criterion, the MASTER simulation should stop when reaching a certain number of infectious existing lineages("lineages"; specified with -l) or after a certain time ("time", specified with -t)(default = "lineages")',type=str,choices=["lineages","time"])
-parser.add_argument('-min_mt','--min_master_tips', metavar='', default='4', help='minimum number of tips in the tree output of MASTER to accept the simulation' , type =int)
-parser.add_argument('-max_mt','--max_master_tips', metavar='', default='2500', help='max number of tips in the tree output of MASTER to accept the simulation' , type =int)
-parser.add_argument('-t','--time', metavar='', default='10', help='Simulation time for MASTER, to be used with "time" as stop criterion. The simulation will stop after the amount of years specified with this option. If the lineage goes extinct before the simulation is retained (Default = 10)' , type =int)
+parser.add_argument('-s','--stop', default=False,metavar="lineages|time", help='stop criterion, the MASTER simulation should stop when reaching a certain number of infectious existing lineages("lineages"; specified with -l) or after a certain time ("time", specified with -t)(default = "lineages"',type=str,choices=["lineages","time"])
+parser.add_argument('-min_mt','--min_master_tips', metavar='', default='4', help='minimum number of tips in the tree output of MASTER' , type =int)
+parser.add_argument('-max_mt','--max_master_tips', metavar='', default='2500', help='max number of tips in the tree output of MASTER' , type =int)
+parser.add_argument('-t','--time', metavar='', default='10', help='Simulation time for MASTER, to be used with "time" as stop criterion ' , type =int)
 parser.add_argument('-rpt','--raxml_pars_tree', metavar='', default='1', help='number of starting parsimony trees for raxml' , type =int)
 parser.add_argument('-rrt','--raxml_rand_tree', metavar='', default='1', help='number of starting random trees for raxml' , type =int)
-parser.add_argument('-SNP_t','--SNP_threshold', metavar='', default='50', help='clustering will be performed for all values in the interval 0-SNP_t (Default = 50)' , type =int)
+parser.add_argument('-SNP_t','--SNP_threshold', metavar='', default='50', help='clustering will be performed for all values in the interval 0-SNP_t' , type =int)
+parser.add_argument('-f','--force', metavar='', default='0', help='Discard simulation if tree height < f (default: 0)',type =int)
 
 
 
@@ -522,6 +524,8 @@ time=arguments.time
 rpt=arguments.raxml_pars_tree
 rrt=arguments.raxml_rand_tree
 SNP_t=arguments.SNP_threshold
+force_t=arguments.force
+
 
 if (arguments.stop == False):
 	stop="lineages"
@@ -553,8 +557,8 @@ if (stop == "lineages"):
 
 mt=(str(min_mt)+"-"+str(max_mt))
 
-stem= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(sim_id)
-folder = "sim_"+  str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time)
+stem= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(force_t) + "_" + str(sim_id)
+folder = "sim_"+  str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(force_t)
 
 
 # create folder 
@@ -567,142 +571,150 @@ os.chdir(folder)
 generate_xml(lin,br,er,dr,sr,stem,sim_time,end_condition,min_mt,max_mt)
 
 
+flag_force=0
+while (flag_force == 0):
+
 # run MASTER
 
-os.system(BEAST_PATH + " -noerr " + stem + ".xml")
+    os.system(BEAST_PATH + " -noerr " + stem + ".xml")  #-noerr 
 
 #parse tree
 
-leaves_dict, t_height = parse_tree (time_sampling, stem)
+    leaves_dict, t_height = parse_tree (time_sampling, stem)
 
+#force t height
 
+    if(t_height < force_t):
+        print ("tree height < than sampling time (" + str(t_height) + " < " + str(force_t) + "rejecting_simulation")
+        continue
+        
 
 ## for each clock rate
 
-for n in range(0, len(c_rates)):
-	cr=c_rates[n]
+    for n in range(0, len(c_rates)):
+        cr=c_rates[n]
 
 
 
 # create folder in scratch
 
-	stem_cr= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(cr) + "_" + str(sim_id)
-	folder_cr= SCRATCH_PATH + "/" + folder + "/" + str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(cr)
+        stem_cr= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(force_t) + "_" + str(cr) + "_" + str(sim_id)
+        folder_cr= SCRATCH_PATH + "/" + folder + "/" + str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(force_t) + "_" + str(cr)
 
-	if not os.path.exists(folder_cr):
+        if not os.path.exists(folder_cr):
         	os.makedirs(folder_cr)
 
 
 # run seq-gen
 
-	os.system("seq-gen -a 1 -l 4000000 -m HKY -t 2 -of -s " + str(cr) + " "  + stem + ".newick_sampled > " + folder_cr + "/" + stem_cr + ".fasta")
+        os.system("seq-gen -a 1 -l 4000000 -m HKY -t 2 -of -s " + str(cr) + " "  + stem + ".newick_sampled > " + folder_cr + "/" + stem_cr + ".fasta")
 
 # create folder in wd
 
-	folder_cr_wd=  str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(cr)
+        folder_cr_wd=  str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(force_t) + "_" + str(cr)
 
-	if not os.path.exists(folder_cr_wd):
-        		os.makedirs(folder_cr_wd)
+        if not os.path.exists(folder_cr_wd):
+                    os.makedirs(folder_cr_wd)
 
-	os.chdir(folder_cr_wd)
+        os.chdir(folder_cr_wd)
 
 # keep only variable sites, but count nonvariable ones for asc correction
 
-	(A_o,C_o,G_o,T_o) = run_snp_site(stem_cr, folder_cr, cr)
+        (A_o,C_o,G_o,T_o) = run_snp_site(stem_cr, folder_cr, cr)
 
 # subsampling only the strains from the specified years and create additional fasta_var files, also run variable fasta and integarte inv count with the count of snp sites
 
-	flag_subsampling = ""
+        flag_subsampling = ""
 
-	if ps_sy == "":
-		for X in range(1,(int(time_sampling)+1)):
-			if X ==1:
-				string = str(X)
-			else:
-				string= string + "," + str(X)
-		ps_sy =[string]
-		flag_subsampling = 'PASS'
+        if ps_sy == "":
+            for X in range(1,(int(time_sampling)+1)):
+                if X ==1:
+                    string = str(X)
+                else:
+                    string= string + "," + str(X)
+            ps_sy =[string]
+            flag_subsampling = 'PASS'
 
-	stem_cr1 =stem_cr
+        stem_cr1 =stem_cr
 
-	if ps_sr == "":
-		ps_sr =[1]
-
-
-
-	for s in ps_sy:
-		A = T = C = G = 0
+        if ps_sr == "":
+            ps_sr =[1]
 
 
 
-		stem_cr= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(cr) + "_" + str(s) 
-		(invA, invC, invG, invT) = subsample_fasta_var(s,stem_cr,stem_cr1,t_height,ps_sr)
+        for s in ps_sy:
+            A = T = C = G = 0
 
-		ktr=0
-		stem_cr2=stem_cr
 
-		for pssr in ps_sr:
 
-			stem_cr= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(cr) + "_" + str(s) + "_" + str(pssr) + "_" + str(sim_id)
-			A = int(A_o) + int(invA[ktr])
-			C = int(C_o) + int(invC[ktr])
-			G = int(G_o) + int(invG[ktr])
-			T = int(T_o) + int(invT[ktr])
-			invariant = A+C+T+G
-			variant = 4000000-invariant
-			file_SNP = open(stem_cr + ".SNP_count", "w")
-			file_SNP.write(str(variant))
-			file_SNP.close()
+            stem_cr= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_" + str(force_t) + "_" + str(cr) + "_" + str(s) 
+            (invA, invC, invG, invT) = subsample_fasta_var(s,stem_cr,stem_cr1,t_height,ps_sr)
+
+            ktr=0
+            stem_cr2=stem_cr
+
+            for pssr in ps_sr:
+
+                stem_cr= str(br) + "_" + str(er) + "_" + str(dr) + "_" + str(sr)  + "_" + str(lin) + "_" + str(mt) + "_" + str(time_sampling) + "_" + str(time) + "_"+ str(force_t) + "_" + str(cr) + "_" + str(s) + "_" + str(pssr) + "_" + str(sim_id)
+                A = int(A_o) + int(invA[ktr])
+                C = int(C_o) + int(invC[ktr])
+                G = int(G_o) + int(invG[ktr])
+                T = int(T_o) + int(invT[ktr])
+                invariant = A+C+T+G
+                variant = 4000000-invariant
+                file_SNP = open(stem_cr + ".SNP_count", "w")
+                file_SNP.write(str(variant))
+                file_SNP.close()
 
 # make tree
 
-			print ("running raxml clock rate " +str(cr))
+                print ("running raxml clock rate " +str(cr))
 
-			run_raxml(stem_cr)
+                run_raxml(stem_cr)
 
 
 # rescale tree to have branch lengths in SNPs and remove ANC
 
-			t = rescale_tree(stem_cr, invariant)
+                t = rescale_tree(stem_cr, invariant)
 
 # cluster
 
-			leaves = clustering(t,stem_cr,SNP_t)
+                leaves = clustering(t,stem_cr,SNP_t)
 
 
 # calculate lengths terminal branches
 
-			terminal_b_length(leaves,stem_cr)
+                terminal_b_length(leaves,stem_cr)
 
 # mv results files
-		
-			os.system("mv " + stem_cr + ".cl_r ../.")
-			#os.system("mv " + stem_cr + ".clnn_r ../.")
-			os.system("mv " + stem_cr + "_ldist.csv ../.")
-			os.system("mv " + stem_cr + ".fasta_var ../.")
-			#os.system("mv " + stem_cr + ".SNP_count ../.")
-			os.system("mv " + stem_cr + ".raxml.rescaled ../.")
 
-			ktr=ktr+1
+                os.system("mv " + stem_cr + ".cl_r ../.")
+                #os.system("mv " + stem_cr + ".clnn_r ../.")
+                os.system("mv " + stem_cr + "_ldist.csv ../.")
+                os.system("mv " + stem_cr + ".fasta_var ../.")
+                os.system("mv " + stem_cr + ".SNP_count ../.")
+                os.system("mv " + stem_cr + ".raxml.rescaled ../.")
+
+                ktr=ktr+1
 # change directory ../. for next clock rate
 
-	os.chdir("../.")
+        os.chdir("../.")
 
 
 # clean files
 
-	if arguments.clean:
-		shutil.rmtree(folder_cr)
-		if os.path.exists(folder_cr_wd):
-			shutil.rmtree(folder_cr_wd)
+        if arguments.clean:
+            shutil.rmtree(folder_cr)
+            if os.path.exists(folder_cr_wd):
+                shutil.rmtree(folder_cr_wd)
 
 
-if arguments.clean:
-	os.remove(stem + "_lname_time.csv")
-	os.remove(stem + ".newick_sampled")
-	os.remove(stem + ".xml")
-	new=folder_cr.rsplit('/', 1)
-	if os.getcwd() != new[0]:
-		shutil.rmtree(new[0])
+    if arguments.clean:
+        os.remove(stem + "_lname_time.csv")
+        os.remove(stem + ".newick_sampled")
+        os.remove(stem + ".xml")
+        new=folder_cr.rsplit('/', 1)
+        if os.getcwd() != new[0]:
+            shutil.rmtree(new[0])
 
-
+    flag_force=1

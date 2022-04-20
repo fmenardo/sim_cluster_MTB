@@ -18,9 +18,20 @@ for (f in files[-1]){
 write.csv(DF, paste0(args[1],".all_ldist_concat.csv"), 
           row.names=FALSE, quote=FALSE)
 
+freq=as.data.frame(table(DF[2]))
+
+colnames(freq) <- c("SNP","count")
+
+tot = sum(freq$count)
+freq$Frequency <- freq$count/tot
 
 
-
+write.csv(freq, paste0(args[1],".tbl_freq.csv"), 
+          row.names=FALSE, quote=FALSE)
+               
+               #
+               
+               
 tab <- matrix(c("nsim", length(files), "mean_samples",mean(list_lines),
                 "median_samples", median(list_lines), "max_samples", 
                 max(list_lines), "min_samples", min(list_lines)), 

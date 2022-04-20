@@ -58,14 +58,14 @@ plot_cl_rates <- function(master_table,SNP_t,order,filename,x_l) {
 
     p <- ggplot(tablev_s, aes(x=fact, y=Clustering_rate)) + ylim(0,1)+
         geom_boxplot(lwd=0.25,  outlier.shape = 19, outlier.size = 0.3,outlier.stroke = 0.3)+
-        ylab("Clustering rate") + xlab(x_l)+ facet_wrap(~ SNP_threshold, nrow=1) +
+        ylab("Clustering rate") + xlab(bquote('Median infectious period (months) - ' ~R[0]))+ facet_wrap(~ SNP_threshold, nrow=1) +
         ggtitle("SNP threshold") + theme_bw()+
 #        theme(plot.title = element_text(hjust = 0.5))+ 
         theme(plot.title = element_text(size=14, hjust=0.5),
             axis.title.x = element_text(size=15),
             axis.title.y = element_text(size=15), panel.border = element_rect(color = "black",fill = NA,size = 1),
             panel.background = element_blank(), axis.line = element_line(colour = "black"),
-            axis.text.x = element_text(angle = 60, hjust = 1,size=7))  
+            axis.text.x = element_text(angle = 60, hjust = 1,size=6))  
        
     tab_res<-aggregate(tablef$Clustering_rate~ tablef$fact+ tablef$SNP_threshold, tablef, quant)
     tab_res1<-aggregate(tablef$Clustering_rate~ tablef$fact+ tablef$SNP_threshold, tablef, quant1)
@@ -88,26 +88,21 @@ plot_cl_rates <- function(master_table,SNP_t,order,filename,x_l) {
     
    m_tab= list()
    q_list= list()
-   av_list= list()
-
     for (r in 1:nrow(master_table)){
         m_tab[[r]]<- read.csv(paste0(master_table$stem[r],".all_ldist_concat.csv"), header=T)
         m_tab[[r]][,3]= master_table$fact[r]
-        q_list[[r]]<- quantile(m_tab[[r]][,2],c(0.025,0.5,0.975))
-        av_list[[r]]<- mean(m_tab[[r]][,2])
-
+        q_list[[r]]<- quantile(m_tab[[r]][,2],c(0.025,0.975))
+    
     }
     
-    
-    
-       m_tab= list()
+         m_tab= list()
     for (r in 1:nrow(master_table)){
         m_tab[[r]]<- read.csv(paste0(master_table$stem[r],".tbl_freq.csv"), header=T)
         m_tab[[r]][,4]= master_table$fact[r]
     
     }
     
-    tablef1 = rbindlist(m_tab)
+      tablef1 = rbindlist(m_tab)
 #    print(tablef1)
     temp_cat=c()
     for (r in 1:nrow(tablef1)){
@@ -129,12 +124,12 @@ plot_cl_rates <- function(master_table,SNP_t,order,filename,x_l) {
 
             
 #stacked barplots
-     p1<- ggplot(tablef1, aes(x=fact, y=Frequency,fill=`TBL (SNPs)`,color=`TBL (SNPs)` ))+ xlab(x_l)+ scale_fill_manual(values=c("black", "gray25", "gray45", "gray65", "gray85"))+
+     p1<- ggplot(tablef1, aes(x=fact, y=Frequency,fill=`TBL (SNPs)`,color=`TBL (SNPs)` ))+ xlab(bquote('Median infectious period (months) - ' ~R[0]))+ scale_fill_manual(values=c("black", "gray25", "gray45", "gray65", "gray85"))+
     scale_color_manual(values=c("black", "gray25", "gray45", "gray65", "gray85"))+
         geom_bar(position='stack', stat='identity') +
         theme(plot.title = element_text(hjust = 0.5))+ 
         theme(plot.title = element_text(size=14, hjust=0.5),
-            axis.title.x =  element_text(size=15), axis.text.x = element_text(size=rel(1.5)),axis.text.y = element_text(size=rel(1.5)),
+            axis.title.x =  element_text(size=15), axis.text.x = element_text(size=rel(1)),axis.text.y = element_text(size=rel(1.5)),
             axis.title.y = element_text(size=15), panel.border = element_rect(color = "black",fill = NA,size = 1),panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
             panel.background = element_blank(), axis.line = element_line(colour = "black"))  
     
@@ -147,10 +142,10 @@ plot_cl_rates <- function(master_table,SNP_t,order,filename,x_l) {
     ggsave(paste0(filename,".png"))
     ggsave(paste0(filename,".pdf"))
     
-    res <- list("order of simulation settings"= order, "95% clustered in 95% simulations SNP threshold" = tr, "95% clustered in 100% simulations SNP threshold" = tr2, "100% clustered in 95% simulations SNP threshold" = tr1, "100% clustered in 100% simulations SNP threshold" = tr3,"95% TBLs (+median)" = q_list, "mean TBL" = av_list)
+    res <- list("order of simulation settings"= order, "95% clustered in 95% simulations SNP threshold" = tr, "95% clustered in 100% simulations SNP threshold" = tr2, "100% clustered in 95% simulations SNP threshold" = tr1, "100% clustered in 100% simulations SNP threshold" = tr3,"95% TBLs" = q_list)
 
     sink(paste0(filename,"_results_summary.txt"))
-   print(res)
+    print(res)
     sink()
     
     
