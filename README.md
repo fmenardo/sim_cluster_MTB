@@ -1,6 +1,6 @@
 # Pipeline to simulate the evolution of genome sequences of MTB under different conditions
 
-This repository containes supplementary data and code used for the preprint **"Clustering and terminal branch lengths analyses can not reliably detect variation in transmission among sub-populations of *Mycobacterium tuberculosis*"**. 
+This repository contains supplementary data and code used for the preprint **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"** (https://doi.org/10.1101/2022.01.03.474767).
 
 
 * sim_results:        a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
@@ -121,6 +121,7 @@ If we want to simulate the same conditions corresponding to sup-population type 
 ```
 conda activate MTB_sim_env
 python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr 0.00000007 -s time -t 30 -min_mt 100 --clean
+conda deactivate
 ```
 
 ## Output
@@ -151,7 +152,7 @@ and then
 ```conda create --name R_info --file R_info.yml```
 
 
-If you ran multiple simulations with the same settings eg.(will take a few minutes, decrease number of simulations or `min_mt` for testing ):
+If you ran multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for testing ):
 
 ```
 for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
@@ -205,20 +206,20 @@ optional arguments:
 
 
 
-To reproduce Figure 1 (will take a few minutes):
+To reproduce Figure 2 (will take a few minutes):
 
 ```
 conda activate R_info
 cd sim_results
-Rscript ../plot_results.R -S 7 -f Figure1 -l "Median infectious period (months) - R0" -o "17 - 0.9,17 - 1,17 - 1.1,8 - 0.9,8 - 1,8 - 1.1,4 - 0.9,4 - 1,4 - 1.1" -i 0.45_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.5_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.55_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.9_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.0_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.1_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.8_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.0_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.2_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1
+Rscript ../plot_results.R -S 7 -f Figure2 -l "Median infectious period (months) - R0" -o "17 - 0.9,17 - 1,17 - 1.1,8 - 0.9,8 - 1,8 - 1.1,4 - 0.9,4 - 1,4 - 1.1" -i 0.45_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.5_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.55_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.9_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.0_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.1_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.8_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.0_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.2_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
-To reproduce Figure 2:
+To reproduce Figure 3:
 
 ```
 conda activate R_info
 cd sim_results
-Rscript ../plot_results.R -S 9 -f Figure2 -l "" -o "Type 1,Type 2" -i 0.77_0.7_0.35_0.35_0_100-2500_10_30_1e-07_1,2,3,4,5,6,7,8,9,10_1:1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
+Rscript ../plot_results.R -S 9 -f Figure3 -l "" -o "Type 1,Type 2" -i 0.77_0.7_0.35_0.35_0_100-2500_10_30_1e-07_1,2,3,4,5,6,7,8,9,10_1:1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
 
 ```
 
