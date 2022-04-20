@@ -6,7 +6,10 @@ This repository contains supplementary data and code used for the preprint **"Un
 * sim_results:        a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
 * MTB_cluster_sim.py: the python wrapper fro the pipeline. The pipeline was tested on Ubuntu and CentOS.
 * collect_res.R:      R script to join outputs (after running several simulations with the same settings)
-* plot_results.R:     R script to compare different settings, produces plots and summary table 
+* plot_results.R:     R script to compare different settings, produces plots and summary table
+* plot_results_violin.R:     like plot_results.R but TBL are plotted as violin plots
+* plot_results-fig_transmission.R:      slight variation of plot_results.R to reproduce Fig.3
+* plot_results-fig_example.R:      slight variation of plot_results.R to reproduce Fig.4
 * MTB_sim.yml:        yml file to create the conda environment to run the pipeline
 * R_info.yml:         yml file yml file to create the conda environment to run the R scripts
 
