@@ -10,10 +10,9 @@ import random
 import shutil
 
 
-#BEAST_PATH ="~/software/beast/bin/beast"
-BEAST_PATH ="~/data/beast/bin/beast"
-SCRATCH_PATH= "/home/cluster/fmenar/scratch"
-#SCRATCH_PATH= os.getcwd()
+BEAST_PATH ="~/software/beast/bin/beast"
+#SCRATCH_PATH=  "path/to/scratch"
+SCRATCH_PATH= os.getcwd()
 
 
 def generate_xml(lin,br,er,dr,sr,stem,sim_time,end_condition,min_mt,max_mt):
