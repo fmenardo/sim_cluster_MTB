@@ -691,7 +691,7 @@ while (flag_force == 0):
                 #os.system("mv " + stem_cr + ".clnn_r ../.")
                 os.system("mv " + stem_cr + "_ldist.csv ../.")
                 os.system("mv " + stem_cr + ".fasta_var ../.")
-                os.system("mv " + stem_cr + ".SNP_count ../.")
+                #os.system("mv " + stem_cr + ".SNP_count ../.")
                 os.system("mv " + stem_cr + ".raxml.rescaled ../.")
 
                 ktr=ktr+1
