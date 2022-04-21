@@ -52,7 +52,7 @@ If you want you can specify a path to a folder where the intermediate files will
 usage: MTB_cluster_sim.py [-h] [-l] [-ts] [-br] [-dr] [-sr] [-er] [-sim_n]
                           [-cr  [...]] [-ps_sr [...]] [-ps_sy [...]] [-c]
                           [-s lineages|time] [-min_mt] [-max_mt] [-t] [-rpt]
-                          [-rrt] [-SNP_t]
+                          [-rrt] [-SNP_t] [-f]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -106,7 +106,8 @@ optional arguments:
   -SNP_t , --SNP_threshold 
                         clustering will be performed for all values in the
                         interval 0-SNP_t (Default = 50)
-
+  -f , --force          Discard simulation if tree height < f (default: 0)
+  
 ```
 
 ## Stop conditions
@@ -119,11 +120,11 @@ There are two possible stop conditions which are mutually exclusive: `-s lineage
 
 ## An example
 
-If we want to simulate the same conditions corresponding to sup-population type 2 in the manuscript (Fig. 2)
+If we want to simulate the same conditions corresponding to sup-population type 2 in the manuscript (Fig. 4)
 
 ```
 conda activate MTB_sim_env
-python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n 1 -cr 0.00000007 -s time -t 30 -min_mt 100 --clean
+python MTB_cluster_sim.py -ts 10 -br 0.9 -dr 0.5 -sr 0.5 -er 1.7 -sim_n 1 -cr 0.00000007 -s time -t 30 -f 10 -min_mt 100 --clean
 conda deactivate
 ```
 
@@ -140,7 +141,7 @@ Output files (these files are not deleted with `--clean`):
 
 The name of the output files (before extension) is composed by the values of the different parameters:
 
-`br`\_`er`\_`dr`\_`sr`\_`l`\_`min_mt`-`max_mt`\_`ts`\_`t`\_`cr`\_`er`\_`ps_sy`\_`ps_sr`\_`sim_n`
+`br`\_`er`\_`dr`\_`sr`\_`l`\_`min_mt`-`max_mt`\_`ts`\_`t`\_`f`\_`cr`\_`er`\_`ps_sy`\_`ps_sr`\_`sim_n`
 
 ## Collect results
 
