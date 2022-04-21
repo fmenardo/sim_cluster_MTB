@@ -159,22 +159,24 @@ and then
 If you ran multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for testing ):
 
 ```
-for i in {1..10}; do python MTB_cluster_sim.py -ts 10 -br 1.53 -dr 0.85 -sr 0.85 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 --clean ;echo "this is the $i simulation"; done;
+for i in {2..5}; do python MTB_cluster_sim.py -ts 10 -br 0.9 -dr 0.5 -sr 0.5 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 -f 10 --clean ;echo "this is the $i simulation"; done;
 ```
 You can collect the results of the 10 simulations as follow:
 
 ```
 conda activate R_info
-cd sim_1.53_1.7_0.85_0.85_0_100-2500_10_30/
-Rscript ../collect_res.R 1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
+cd sim_1.0_1.7_0.5_0.5_0_100-2500_10_30_10/
+Rscript ../collect_res.R 1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
-This will generate 4 files:
+This will generate 5 files:
 
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations (one sim per line)
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations (one tip per line)
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.info`                 : some general info and stats
-* `1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset (one sim per line)
+* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations (one sim per line)
+* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations (one tip per line)
+* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.tbl_freq.csv`         : the spectrum of TBL for all tips in all simulations (count and frequency)
+* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.info`                 : some general info and stats
+* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset (one sim per line)
+
 
 ## Plot results
 
