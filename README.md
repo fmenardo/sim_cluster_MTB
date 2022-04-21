@@ -159,7 +159,7 @@ and then
 If you ran multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for speedier testing):
 
 ```
-for i in {2..5}; do python MTB_cluster_sim.py -ts 10 -br 0.9 -dr 0.5 -sr 0.5 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 -f 10 --clean ;echo "this is the $i simulation"; done;
+for i in {1..5}; do python MTB_cluster_sim.py -ts 10 -br 0.9 -dr 0.5 -sr 0.5 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 -f 10 --clean ;echo "this is the $i simulation"; done;
 ```
 You can collect the results of the 5 simulations as follow:
 
@@ -247,7 +247,7 @@ To reproduce Figure 4:
 ```
 conda activate R_info
 cd sim_results
-Rscript ../plot_results_fig4.R -S 8 -f Figure3 -l "" -o "Type 1,Type 2" -i \
+Rscript ../plot_results_fig4.R -S 8 -f Figure4 -l "" -o "Type 1,Type 2" -i \
 example/1.1_0.7_0.5_0.5_0_100-2500_10_30_10_1e-07_1,2,3,4,5,6,7,8,9,10_1:\
 example/0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1
 
