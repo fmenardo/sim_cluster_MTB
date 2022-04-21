@@ -3,15 +3,15 @@
 This repository contains supplementary data and code used for the preprint **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"** (https://doi.org/10.1101/2022.01.03.474767).
 
 
-* sim_results:        a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
-* MTB_cluster_sim.py: the python wrapper fro the pipeline. The pipeline was tested on Ubuntu and CentOS.
-* collect_res.R:      R script to join outputs (after running several simulations with the same settings)
-* plot_results.R:     R script to compare different settings, produces plots and summary table
-* plot_results_violin.R:     like plot_results.R but TBL are plotted as violin plots
-* plot_results-fig_transmission.R:      slight variation of plot_results.R to reproduce Fig.3
-* plot_results-fig_example.R:      slight variation of plot_results.R to reproduce Fig.4
-* MTB_sim.yml:        yml file to create the conda environment to run the pipeline
-* R_info.yml:         yml file yml file to create the conda environment to run the R scripts
+* sim_results:                a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
+* MTB_cluster_sim.py:         the python wrapper fro the pipeline. The pipeline was tested on Ubuntu and CentOS.
+* collect_res.R:              R script to join outputs (after running several simulations with the same settings)
+* plot_results.R:             R script to compare different settings, produces plots and summary table
+* plot_results_violin.R:      like plot_results.R but TBL are plotted as violin plots
+* plot_resultsfig3.R:         slight variation of plot_results.R to reproduce Fig.3
+* plot_results_fig4.R:        slight variation of plot_results.R to reproduce Fig.4
+* MTB_sim.yml:                yml file to create the conda environment to run the pipeline
+* R_info.yml:                 yml file yml file to create the conda environment to run the R scripts
 
 
 ## Installation with conda
@@ -156,26 +156,26 @@ and then
 ```conda create --name R_info --file R_info.yml```
 
 
-If you ran multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for testing ):
+If you ran multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for speedier testing):
 
 ```
 for i in {2..5}; do python MTB_cluster_sim.py -ts 10 -br 0.9 -dr 0.5 -sr 0.5 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 -f 10 --clean ;echo "this is the $i simulation"; done;
 ```
-You can collect the results of the 10 simulations as follow:
+You can collect the results of the 5 simulations as follow:
 
 ```
 conda activate R_info
-cd sim_1.0_1.7_0.5_0.5_0_100-2500_10_30_10/
-Rscript ../collect_res.R 1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1
+cd sim_0.9_1.7_0.5_0.5_0_100-2500_10_30_10/
+Rscript ../collect_res.R 0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
 This will generate 5 files:
 
-* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations (one sim per line)
-* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations (one tip per line)
-* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.tbl_freq.csv`         : the spectrum of TBL for all tips in all simulations (count and frequency)
-* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.info`                 : some general info and stats
-* `1.0_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset (one sim per line)
+* `0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_cl_r_concat`      : clustering rates for all simulations (one sim per line)
+* `0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.all_ldist_concat.csv` : terminal branch lengths for all tips in all simulations (one tip per line)
+* `0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.tbl_freq.csv`         : the spectrum of TBL for all tips in all simulations (count and frequency)
+* `0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.info`                 : some general info and stats
+* `0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1.N_count`              : the number of tips in each simulated dataset (one sim per line)
 
 
 ## Plot results
@@ -217,7 +217,10 @@ To reproduce Figure 2 (will take a few minutes):
 ```
 conda activate R_info
 cd sim_results
-Rscript ../plot_results.R -S 7 -f Figure2 -l "Median infectious period (months) - R0" -o "17 - 0.9,17 - 1,17 - 1.1,8 - 0.9,8 - 1,8 - 1.1,4 - 0.9,4 - 1,4 - 1.1" -i 0.45_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.5_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.55_1.0_0.0_0.5_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:0.9_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.0_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.1_1.0_0.0_1.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:1.8_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.0_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1:2.2_1.0_0.0_2.0_0_100-2500_10_30_8e-08_1,2,3,4,5,6,7,8,9,10_1
+Rscript ../plot_results.R -S 10 -f Figure2 -l "Median latency period (months)" -o "16.6,8.3,4.2" -i \
+latency/1.0_0.5_0.5_0.5_0_100-2500_10_30_0_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+latency/1.0_1.0_0.5_0.5_0_100-2500_10_30_0_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+latency/1.0_2.0_0.5_0.5_0_100-2500_10_30_0_8e-08_1,2,3,4,5,6,7,8,9,10_1
 ```
 
 To reproduce Figure 3:
@@ -225,7 +228,28 @@ To reproduce Figure 3:
 ```
 conda activate R_info
 cd sim_results
-Rscript ../plot_results.R -S 9 -f Figure3 -l "" -o "Type 1,Type 2" -i 0.77_0.7_0.35_0.35_0_100-2500_10_30_1e-07_1,2,3,4,5,6,7,8,9,10_1:1.53_1.7_0.85_0.85_0_100-2500_10_30_7e-08_1,2,3,4,5,6,7,8,9,10_1
+Rscript ../../scripts/plot_results_fig3.R -S 7 -f Figure3 -l "Median infectious period (months) - R0" \
+-o "17 - 0.9,17 - 1,17 - 1.1,8 - 0.9,8 - 1,8 - 1.1,4 - 0.9,4 - 1,4 - 1.1" -i \
+R0/0.45_1.0_0.0_0.5_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/0.5_1.0_0.0_0.5_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/0.55_1.0_0.0_0.5_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/0.9_1.0_0.0_1.0_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/1.0_1.0_0.0_1.0_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/1.1_1.0_0.0_1.0_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/1.8_1.0_0.0_2.0_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/2.0_1.0_0.0_2.0_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1:\
+R0/2.2_1.0_0.0_2.0_0_100-2500_10_30_10_8e-08_1,2,3,4,5,6,7,8,9,10_1
+
+
+```
+To reproduce Figure 4:
+
+```
+conda activate R_info
+cd sim_results
+Rscript ../plot_results_fig4.R -S 8 -f Figure3 -l "" -o "Type 1,Type 2" -i \
+example/1.1_0.7_0.5_0.5_0_100-2500_10_30_10_1e-07_1,2,3,4,5,6,7,8,9,10_1:\
+example/0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1
 
 ```
 
