@@ -8,7 +8,7 @@ This repository contains supplementary data and code used for the preprint **"Un
 * collect_res.R:              R script to join outputs (after running several simulations with the same settings)
 * plot_results.R:             R script to compare different settings, produces plots and summary table
 * plot_results_violin.R:      like plot_results.R but TBL are plotted as violin plots
-* plot_resultsfig3.R:         slight variation of plot_results.R to reproduce Fig.3
+* plot_results_fig3.R:         slight variation of plot_results.R to reproduce Fig.3
 * plot_results_fig4.R:        slight variation of plot_results.R to reproduce Fig.4
 * MTB_sim.yml:                yml file to create the conda environment to run the pipeline
 * R_info.yml:                 yml file yml file to create the conda environment to run the R scripts
