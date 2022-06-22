@@ -1,6 +1,6 @@
 # Pipeline to simulate the evolution of genome sequences of MTB under different conditions
 
-This repository contains supplementary data and code used for the preprint **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"** (https://doi.org/10.1101/2022.01.03.474767).
+This repository contains supplementary data and code used for the manuscript **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"** (Menardo 2022, eLife2022;11:e76780 DOI: https://doi.org/10.7554/eLife.76780).
 
 
 * sim_results:                a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
