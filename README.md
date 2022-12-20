@@ -19,7 +19,7 @@ This repository contains supplementary data and code used for the manuscript **"
 ```
 conda env create --file MTB_sim.yml
 ```
-This will create a conda environment with all the tools needed, with one exception. [Beast2](https://www.beast2.org/) needs to be installed manually, make sure to install the package [MASTER](http://tgvaughan.github.io/MASTER/) as well (follow the links for instuctions).
+This will create a conda environment with all the tools needed, with one exception. [Beast2](https://www.beast2.org/) needs to be installed manually (tested with v 2.6.6), make sure to install the package [MASTER](http://tgvaughan.github.io/MASTER/) as well (tested with v6.1.2).
 
 Now open the file MTB_cluster_sim.py with a text editor (this is the wrapper for the pipeline), the beginning of the file looks like this:
 
