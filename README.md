@@ -11,7 +11,7 @@ This repository contains supplementary data and code used for the manuscript **"
 * plot_results_fig3.R:         slight variation of plot_results.R to reproduce Fig.3
 * plot_results_fig4.R:        slight variation of plot_results.R to reproduce Fig.4
 * MTB_sim.yml:                yml file to create the conda environment to run the pipeline
-* R_info.yml:                 yml file yml file to create the conda environment to run the R scripts
+* R_info.yml:                 yml file to create the conda environment to run the R scripts
 
 
 ## Installation with conda
