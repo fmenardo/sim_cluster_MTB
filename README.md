@@ -1,6 +1,6 @@
 # Pipeline to simulate the evolution of genome sequences of MTB under different conditions
 
-This repository contains supplementary data and code used for the preprint **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"** (https://doi.org/10.1101/2022.01.03.474767).
+This repository contains supplementary data and code used for the manuscript **"Understanding drivers of phylogenetic clustering and terminal branch lengths distribution in epidemics of *Mycobacterium tuberculosis*"** (Menardo 2022, eLife2022;11:e76780 DOI: https://doi.org/10.7554/eLife.76780).
 
 
 * sim_results:                a folder containing results for all simulations performed in the study (clustering rates and terminal branch lengths)
@@ -11,7 +11,7 @@ This repository contains supplementary data and code used for the preprint **"Un
 * plot_results_fig3.R:         slight variation of plot_results.R to reproduce Fig.3
 * plot_results_fig4.R:        slight variation of plot_results.R to reproduce Fig.4
 * MTB_sim.yml:                yml file to create the conda environment to run the pipeline
-* R_info.yml:                 yml file yml file to create the conda environment to run the R scripts
+* R_info.yml:                 yml file to create the conda environment to run the R scripts
 
 
 ## Installation with conda
@@ -19,7 +19,7 @@ This repository contains supplementary data and code used for the preprint **"Un
 ```
 conda env create --file MTB_sim.yml
 ```
-This will create a conda environment with all the tools needed, with one exception. [Beast2](https://www.beast2.org/) needs to be installed manually, make sure to install the package [MASTER](http://tgvaughan.github.io/MASTER/) as well (follow the links for instuctions).
+This will create a conda environment with all the tools needed, with one exception. [Beast2](https://www.beast2.org/) needs to be installed manually (tested with v 2.6.6), make sure to install the package [MASTER](http://tgvaughan.github.io/MASTER/) as well (tested with v6.1.2).
 
 Now open the file MTB_cluster_sim.py with a text editor (this is the wrapper for the pipeline), the beginning of the file looks like this:
 
