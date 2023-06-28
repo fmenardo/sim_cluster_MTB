@@ -257,9 +257,9 @@ example/0.9_1.7_0.5_0.5_0_100-2500_10_30_10_7e-08_1,2,3,4,5,6,7,8,9,10_1
 
 There are two slightly different version of the BDEI model that can be simulated with this pipeline.
 
-A: This is the model used in the publication. Just set the transmission rate `-br`, the sampling rate `-sr`,  and the death rate `-dr`
+A: This is the model used in the publication. Just set the transmission rate (λ)`-br`, the rate at which exposed individuals become infectious (ψ) `-er`, the sampling rate (ε) `-sr`,  and the death rate (σ) `-dr`
 
-B: For this implementation set the death rate `-dr` to zero, And specify the sampling probability (p in the figure) with `-ps_sr` 
+B: For this implementation set the death rate `-dr` to zero, And specify the sampling probability (p) with `-ps_sr` 
 
 ![Alt text](img/BDEI_models_1.png?raw=true "BDEI models")
 
