@@ -47,9 +47,9 @@ You need to edit the path to your beast launching script.
 If you want you can specify a path to a folder where the intermediate files will be saved (handy when working on a cluster with a scratch partition). If you do so uncomment and edit the first line starting with SCRATCH_PATH, and comment the line after.
 
 
-## Installation of conda environemnt from archive
+## Installation of conda environment from archive
 
-For long term reproducibility the conda environemnt has been archived and can be dwnoaded here: https://doi.org/10.5281/zenodo.8094976
+For long term reproducibility the conda environment has been archived and can be dwnoaded here: https://doi.org/10.5281/zenodo.8094976.
 
 Once you have dowloaded the file you can run:
   
