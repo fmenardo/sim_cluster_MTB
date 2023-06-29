@@ -59,7 +59,7 @@ tar -xzf MTB_sim_env.tar.gz -C MTB_sim_env
 source MTB_sim_env/bin/activate
 ```
 
-Now that the virtual environment is active you can run `conda-unpack`
+Now that the virtual environment is active you should run `conda-unpack`
 
 Please not that you still need to install MASTER and Beast2. You also need to to edit the path to your beast launching script as explained above.
 
