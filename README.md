@@ -46,6 +46,24 @@ You need to edit the path to your beast launching script.
 
 If you want you can specify a path to a folder where the intermediate files will be saved (handy when working on a cluster with a scratch partition). If you do so uncomment and edit the first line starting with SCRATCH_PATH, and comment the line after.
 
+
+## Installation of conda environemnt from archive
+
+For long term reproducibility the conda environemnt has been archived and can be dwnoaded here: https://doi.org/10.5281/zenodo.8094976
+
+Once you have dowloaded the file you can run:
+  
+```
+mkdir MTB_sim_env
+tar -xzf MTB_sim_env.tar.gz -C MTB_sim_env
+source MTB_sim_env/bin/activate
+```
+
+Now that the virtual environment is active you can run `conda-unpack`
+
+Please not that you still need to install MASTER and Beast2. You also need to to edit the path to your beast launching script as explained above.
+
+
 ## Usage
 
 ```
