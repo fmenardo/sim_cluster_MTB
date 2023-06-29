@@ -174,7 +174,7 @@ and then
 ```conda create --name R_info --file R_info.yml```
 
 
-If you ran multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for speedier testing):
+Run multiple simulations with the same settings (will take a few minutes, decrease number of simulations or `min_mt` for speedier testing):
 
 ```
 for i in {1..5}; do python MTB_cluster_sim.py -ts 10 -br 0.9 -dr 0.5 -sr 0.5 -er 1.7 -sim_n $i -cr 0.00000007 -s time -t 30 -min_mt 100 -f 10 --clean ;echo "this is the $i simulation"; done;
