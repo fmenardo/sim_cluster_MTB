@@ -49,7 +49,7 @@ If you want you can specify a path to a folder where the intermediate files will
 
 ## Installation of conda environment from archive
 
-For long term reproducibility the conda environment has been archived and can be dwnoaded here: https://doi.org/10.5281/zenodo.8094976.
+For long term reproducibility the conda environment has been archived and can be downloaded here: https://doi.org/10.5281/zenodo.8094976.
 
 Once you have dowloaded the file you can run:
   
@@ -61,7 +61,7 @@ source MTB_sim_env/bin/activate
 
 Now that the virtual environment is active you should run `conda-unpack`
 
-Please not that you still need to install MASTER and Beast2. You also need to to edit the path to your beast launching script as explained above.
+Please note that you still need to install MASTER and Beast2 separately. You also need to to edit the path to your beast launching script as explained above.
 
 
 ## Usage
